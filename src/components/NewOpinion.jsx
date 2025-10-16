@@ -3,6 +3,7 @@ import { useActionState } from "react";
 export function NewOpinion() {
 
   function shereOpinionAction(prevState, formData) {
+    const title = formData.get('title');
     const body = formData.get('body');
     const userName = formData.get('userName');
 
@@ -25,7 +26,7 @@ export function NewOpinion() {
         enteredValues: {
           title,
           body,
-          name,
+          userName,
         },
       };
     }
@@ -37,10 +38,11 @@ export function NewOpinion() {
   }
 
   const [formState, formAction] = useActionState(shereOpinionAction, { errors: null });
+
   return (
     <div id="new-opinion">
       <h2>Share your opinion!</h2>
-      <form>
+      <form action={formAction}>
         <div className="control-row">
           <p className="control">
             <label htmlFor="userName">Your Name</label>
